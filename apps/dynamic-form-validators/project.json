@@ -1,0 +1,92 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/dynamic-form-validators/src",
+  "prefix": "acm-demos",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/dynamic-form-validators",
+        "index": "apps/dynamic-form-validators/src/index.html",
+        "main": "apps/dynamic-form-validators/src/main.ts",
+        "polyfills": "apps/dynamic-form-validators/src/polyfills.ts",
+        "tsConfig": "apps/dynamic-form-validators/tsconfig.app.json",
+        "assets": [
+          "apps/dynamic-form-validators/src/favicon.ico",
+          "apps/dynamic-form-validators/src/assets"
+        ],
+        "styles": ["apps/dynamic-form-validators/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/dynamic-form-validators/src/environments/environment.ts",
+              "with": "apps/dynamic-form-validators/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "dynamic-form-validators:build:production"
+        },
+        "development": {
+          "browserTarget": "dynamic-form-validators:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "dynamic-form-validators:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/dynamic-form-validators/**/*.ts",
+          "apps/dynamic-form-validators/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/dynamic-form-validators"],
+      "options": {
+        "jestConfig": "apps/dynamic-form-validators/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
